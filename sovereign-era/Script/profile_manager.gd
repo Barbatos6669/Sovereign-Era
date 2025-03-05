@@ -1,96 +1,124 @@
 extends Node
 
+# UI panel references
 @onready var login_panel: Control = $UI/LoginPanel
 @onready var register_panel: Control = $UI/RegisterPanel
 
-@onready var login_UserName: LineEdit = $UI/LoginPanel/VBoxContainer/UserName_LineEdit
-@onready var login_Password: LineEdit = $UI/LoginPanel/VBoxContainer/Password_LineEdit2
-@onready var login_Login: Button = $UI/LoginPanel/VBoxContainer/Login_Button
-@onready var login_Register: Button = $UI/LoginPanel/VBoxContainer/Register_Button
+# Login panel UI elements
+@onready var login_username_field: LineEdit = $UI/LoginPanel/VBoxContainer/UserName_LineEdit
+@onready var login_password_field: LineEdit = $UI/LoginPanel/VBoxContainer/Password_LineEdit2
+@onready var login_button: Button = $UI/LoginPanel/VBoxContainer/Login_Button
+@onready var login_register_button: Button = $UI/LoginPanel/VBoxContainer/Register_Button
 
-@onready var register_UserName: LineEdit = $UI/RegisterPanel/VBoxContainer/Reg_Username_LineEdit
-@onready var register_Password: LineEdit = $UI/RegisterPanel/VBoxContainer/Reg_Password_LineEdit
-@onready var register_Register: Button = $UI/RegisterPanel/VBoxContainer/Back_Button
-@onready var register_Back: Button = $UI/RegisterPanel/VBoxContainer/Register_Button
+# Register panel UI elements
+@onready var register_username_field: LineEdit = $UI/RegisterPanel/VBoxContainer/Reg_Username_LineEdit
+@onready var register_password_field: LineEdit = $UI/RegisterPanel/VBoxContainer/Reg_Password_LineEdit
+@onready var create_account_button: Button = $UI/RegisterPanel/VBoxContainer/Register_Button
+@onready var back_button: Button = $UI/RegisterPanel/VBoxContainer/Back_Button
 
-func _ready():
+func _ready() -> void:
+	# Start with login panel visible, register panel hidden
 	register_panel.visible = false
 	login_panel.visible = true
 
+# Login button pressed: Verify credentials
 func _on_login_button_pressed() -> void:
 	print("Login Button Pressed")
-	var username = login_UserName.text
-	var password = login_Password.text
-	print("Username: ", username)
-	print("Password: ", password)
-
-	var profile_data = load_profile_data(username)
-	if profile_data != {}:
-		print("Profile data loaded successfully")
-		print("Profile Data: ", profile_data)
+	var username: String = login_username_field.text
+	var password: String = login_password_field.text
+	
+	if username.is_empty() or password.is_empty():
+		print("Error: Username and password cannot be empty")
+		return
+	
+	var profile_data: Dictionary = load_profile_data(username)
+	if profile_data != {} and profile_data["password"] == password:
+		print("Login successful! Profile Data: ", profile_data)
 	else:
-		print("Error: Profile data not found")
+		print("Invalid username or password")
 
+# Switch to register panel
 func _on_register_button_pressed() -> void:
 	print("Register Button Pressed")
 	register_panel.visible = true
 	login_panel.visible = false
 
+# Create account button pressed: Register new user
 func _on_create_account_button_pressed() -> void:
 	print("Create Account Button Pressed")
-	var username = register_UserName.text
-	var password = register_Password.text
-	print("Username: ", username)
-	print("Password: ", password)
-
+	var username: String = register_username_field.text
+	var password: String = register_password_field.text
+	
+	# Basic input validation
+	if username.is_empty() or password.is_empty():
+		print("Error: Username and password cannot be empty")
+		return
+	if not username.is_valid_filename():
+		print("Error: Username contains invalid characters for a filename")
+		return
+	
+	# Check if profile already exists
+	if load_profile_data(username) != {}:
+		print("Error: Username already taken")
+		return
+	
+	create_profile(username, password)
+	print("Account created successfully")
+	
+	# Return to login panel
 	register_panel.visible = false
 	login_panel.visible = true
+	
+	# Clear fields
+	register_username_field.text = ""
+	register_password_field.text = ""
 
-	create_profile(username, password)
-
+# Back button pressed: Return to login panel
 func _on_back_button_pressed() -> void:
 	print("Back Button Pressed")
 	register_panel.visible = false
 	login_panel.visible = true
+	
+	# Clear fields
+	register_username_field.text = ""
+	register_password_field.text = ""
 
+# Create a new profile with given username and password
 func create_profile(username: String, password: String) -> void:
-	var data = {
+	var data: Dictionary = {
 		"username": username,
-		"password": password
+		"password": password  # Note: In production, hash this!
 	}
 	save_profile_data(username, data)
 
+# Save profile data to a JSON file
 func save_profile_data(username: String, data: Dictionary) -> void:
-	# Use user:// instead of res:// for writable data
-	var file = FileAccess.open("res://Profiles/" + username + ".json", FileAccess.ModeFlags.WRITE)
-	print("Saving profile data for " + username)
-
-	if file != null:
-		print("File opened successfully")
-		var json_string = JSON.stringify(data)
-		print("JSON String: ", json_string)
-		file.store_string(json_string)
-		print("Profile data saved for " + username)
-		file.close()
-	else:
-		print("Error: Could not save file for " + username)
-
-func load_profile_data(username: String) -> Dictionary:
-	var data = {}
-	var file = FileAccess.open("res://Profiles/" + username + ".json", FileAccess.ModeFlags.READ)
+	var file_path: String = "res://Profiles/" + username + ".json"
+	var file: FileAccess = FileAccess.open(file_path, FileAccess.ModeFlags.WRITE)
 	
 	if file != null:
-		print("File opened successfully")
-		var json_string = file.get_as_text()
-		print("JSON String: ", json_string)
-		# Simplified JSON parsing using built-in method
-		data = JSON.parse_string(json_string)
-		if data != null:  # Check if parsing was successful
+		var json_string: String = JSON.stringify(data)
+		file.store_string(json_string)
+		file.close()
+		print("Profile data saved for " + username + " at " + file_path)
+	else:
+		print("Error: Could not save file for " + username + " - ", FileAccess.get_open_error())
+
+# Load profile data from a JSON file
+func load_profile_data(username: String) -> Dictionary:
+	var file_path: String = "res://Profiles/" + username + ".json"
+	var file: FileAccess = FileAccess.open(file_path, FileAccess.ModeFlags.READ)
+	
+	if file != null:
+		var json_string: String = file.get_as_text()
+		file.close()
+		var data = JSON.parse_string(json_string)
+		if data != null and data is Dictionary:
 			print("Profile data loaded for " + username)
+			return data
 		else:
 			print("Error: Failed to parse JSON for " + username)
-		file.close()
+			return {}
 	else:
-		print("Error: Could not load file for " + username)
-
-	return data if data != null else {}
+		print("Error: Could not load file for " + username + " - ", FileAccess.get_open_error())
+		return {}
