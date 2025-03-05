@@ -1,0 +1,123 @@
+[gd_scene load_steps=2 format=3 uid="uid://r8dwlfvonvr3"]
+
+[ext_resource type="Script" path="res://Script/profile_manager.gd" id="1_qvd18"]
+
+[node name="ProfileManager" type="Node"]
+script = ExtResource("1_qvd18")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoginPanel" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LoginPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -95.0
+offset_right = 43.5
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UserName_Label" type="Label" parent="UI/LoginPanel/VBoxContainer"]
+layout_mode = 2
+text = "UserName:"
+
+[node name="UserName_LineEdit" type="LineEdit" parent="UI/LoginPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Password_Label2" type="Label" parent="UI/LoginPanel/VBoxContainer"]
+layout_mode = 2
+text = "Password:
+"
+
+[node name="Password_LineEdit2" type="LineEdit" parent="UI/LoginPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Login_Button" type="Button" parent="UI/LoginPanel/VBoxContainer"]
+layout_mode = 2
+text = "Login
+"
+
+[node name="Register_Button" type="Button" parent="UI/LoginPanel/VBoxContainer"]
+layout_mode = 2
+text = "Register
+"
+
+[node name="RegisterPanel" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/RegisterPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -126.0
+offset_right = 71.0
+offset_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Reg_UserName_label" type="Label" parent="UI/RegisterPanel/VBoxContainer"]
+layout_mode = 2
+text = "Username:"
+
+[node name="Reg_Username_LineEdit" type="LineEdit" parent="UI/RegisterPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Reg_Password_Label2" type="Label" parent="UI/RegisterPanel/VBoxContainer"]
+layout_mode = 2
+text = "Password
+"
+
+[node name="Reg_Password_LineEdit" type="LineEdit" parent="UI/RegisterPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Reg_CFrm_PW_Label" type="Label" parent="UI/RegisterPanel/VBoxContainer"]
+layout_mode = 2
+text = "Confirm Password"
+
+[node name="Reg_CFrm_PW_LineEdit" type="LineEdit" parent="UI/RegisterPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Create_Account_Button" type="Button" parent="UI/RegisterPanel/VBoxContainer"]
+layout_mode = 2
+text = "Create Account"
+
+[node name="Back_Button" type="Button" parent="UI/RegisterPanel/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="Network" type="Node" parent="."]
+
+[connection signal="pressed" from="UI/LoginPanel/VBoxContainer/Login_Button" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="UI/LoginPanel/VBoxContainer/Register_Button" to="." method="_on_register_button_pressed"]
+[connection signal="pressed" from="UI/LoginPanel/VBoxContainer/Register_Button" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="UI/RegisterPanel/VBoxContainer/Create_Account_Button" to="." method="_on_create_account_button_pressed"]
+[connection signal="pressed" from="UI/RegisterPanel/VBoxContainer/Back_Button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="UI/RegisterPanel/VBoxContainer/Back_Button" to="." method="_on_button_2_pressed"]
