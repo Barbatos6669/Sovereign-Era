@@ -39,20 +39,15 @@ func _on_account_creation_create_button_pressed() -> void:
 	account_file.store_string(JSON.stringify(account))
 	account_file.close()
 	
-
 	# load the login scene
 	get_tree().change_scene_to_file("res://Scenes/login_scene.tscn")
 	# remove the account creation scene
 	queue_free()
 	
-	
-	
-
-
 func _on_account_creation_back_button_pressed() -> void:
 	print("Back Button Pressed")
 	
-		# load the login scene
+	# load the login scene
 	get_tree().change_scene_to_file("res://Scenes/login_scene.tscn")
 	# remove the account creation scene
-	queue_free()	
+	queue_free()

@@ -4,3 +4,15 @@
 
 [node name="CityScene" type="Node"]
 script = ExtResource("1_sq0ud")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CityScene_Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "City Scene"

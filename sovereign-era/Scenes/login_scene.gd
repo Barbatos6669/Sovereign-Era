@@ -16,7 +16,22 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_login_button_pressed() -> void:	
-	print("Login Button Pressed")	
+	print("Login Button Pressed")
+
+	# Validate the username and password
+	var username = username_line_edit.text
+	var password = password_line_edit.text
+
+	if username == "" or password == "":
+		print("Username and password cannot be empty")
+		return
+
+	# check if the account exists
+	var filepath = "res://Data/Accounts/" + username + ".json"
+	var account_file = FileAccess.open(filepath, FileAccess.ModeFlags.READ)
+	print("Checking if account exists: " + filepath)
+
+	# TODO: Add logic to check if the account exists and if the password is correct	
 
 func _on_create_account_button_pressed() -> void:
 	print("Create Account Button Pressed")

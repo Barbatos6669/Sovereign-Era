@@ -48,9 +48,6 @@ func quit_game() -> void:
 # Scene Management
 # -------------------
 
-func change_scene(scene_name: String) -> void:
-	# Change the current scene
-	get_tree().change_scene(scene_name)
 
 
 	
