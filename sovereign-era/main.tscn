@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckcq2xhha13da"]
-
-[ext_resource type="Script" path="res://Script/main.gd" id="1_snjab"]
-[ext_resource type="PackedScene" uid="uid://r8dwlfvonvr3" path="res://core/profile_manager.tscn" id="2_krvs6"]
-
-[node name="Main" type="Node"]
-script = ExtResource("1_snjab")
-
-[node name="ProfileManager" parent="." instance=ExtResource("2_krvs6")]

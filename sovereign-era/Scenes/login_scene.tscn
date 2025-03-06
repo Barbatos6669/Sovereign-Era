@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://2mvv0n4kqq03"]
+
+[ext_resource type="Script" path="res://Scenes/login_scene.gd" id="1_d7sjg"]
+
+[node name="LoginScene" type="Node"]
+script = ExtResource("1_d7sjg")
+
+[node name="Login_UI_Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Login_UI_Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -95.0
+offset_right = 63.5
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Login_Username_Label" type="Label" parent="Login_UI_Control/VBoxContainer"]
+layout_mode = 2
+text = "Username:          "
+
+[node name="Login_Username_LineEdit" type="LineEdit" parent="Login_UI_Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Login_Password_Label" type="Label" parent="Login_UI_Control/VBoxContainer"]
+layout_mode = 2
+text = "Password:"
+
+[node name="Login_Password_LineEdit" type="LineEdit" parent="Login_UI_Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Login_Button" type="Button" parent="Login_UI_Control/VBoxContainer"]
+layout_mode = 2
+text = "Login"
+
+[node name="Create_Account_Button" type="Button" parent="Login_UI_Control/VBoxContainer"]
+layout_mode = 2
+text = "Create Account
+"
+
+[connection signal="pressed" from="Login_UI_Control/VBoxContainer/Login_Button" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="Login_UI_Control/VBoxContainer/Create_Account_Button" to="." method="_on_create_account_button_pressed"]
