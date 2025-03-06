@@ -1,5 +1,8 @@
 extends Node
 
+# reference the main scene
+@onready var main_scene: Node = $"."
+
 # UI panel references
 @onready var login_panel: Control = $UI/LoginPanel
 @onready var register_panel: Control = $UI/RegisterPanel
@@ -34,6 +37,25 @@ func _on_login_button_pressed() -> void:
 	var profile_data: Dictionary = load_profile_data(username)
 	if profile_data != {} and profile_data["password"] == password:
 		print("Login successful! Profile Data: ", profile_data)
+
+		# load the main menu scene
+		var main_menu_scene = load("res://core/main_menu.tscn")
+		print("Main Menu Scene: ", main_menu_scene)
+
+		# instatiating the scene
+		var main_menu_instance = main_menu_scene.instantiate()
+		print("Main Menu Instance: ", main_menu_instance)
+
+		# adding the scene to the scene tree
+		get_tree().get_root().add_child(main_menu_instance)
+
+		# hide the login panel
+		login_panel.visible = false	
+
+		# change the profile data in main scene to the profile data of the logged in user	
+		main_scene.user_logged_in = username
+		print("User Logged In: ", main_scene.user_logged_in)
+		
 	else:
 		print("Invalid username or password")
 
@@ -87,7 +109,17 @@ func _on_back_button_pressed() -> void:
 func create_profile(username: String, password: String) -> void:
 	var data: Dictionary = {
 		"username": username,
-		"password": password  # Note: In production, hash this!
+		"password": password,  # Note: In production, hash this!
+		"City": {
+			"Name": "City of " + username,
+			"Population": 100,
+			"Resources": {
+				"Gold": 1000,
+				"Wood": 500,
+				"Stone": 250,
+				"Grain": 1000
+			}
+		}
 	}
 	save_profile_data(username, data)
 
