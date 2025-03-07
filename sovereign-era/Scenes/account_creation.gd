@@ -16,9 +16,7 @@ func _process(delta: float) -> void:
 # Called when the "Create Account" button is pressed
 func _on_account_creation_create_button_pressed() -> void:
 	print("Create Account Button Pressed")
-	# TODO: Add validation, account creation, and saving logic here.
-	# For example, read username_line_edit.text and password_line_edit.text,
-	# then create the account, update your global data, etc.
+	# TODO: Add validation, account creation, and saving logic here.	
 
 	# validate the username and password
 	var username = username_line_edit.text
@@ -69,7 +67,9 @@ func _on_account_creation_create_button_pressed() -> void:
 	# save the player and city data
 	var player_city_file = FileAccess.open("res://Data/PlayerCityData/" + username + "_city.json", FileAccess.WRITE)
 	player_city_file.store_string(JSON.stringify(player_city_data, "\t"))
-	player_city_file.close()
+	player_city_file.close()	
+
+	print("Account created successfully.")
 	
 	# load the login scene
 	get_tree().change_scene_to_file("res://Scenes/login_scene.tscn")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cm88fwq5p6ccj"]
+[gd_scene load_steps=3 format=3 uid="uid://cm88fwq5p6ccj"]
 
 [ext_resource type="Script" path="res://Scenes/account_creation.gd" id="1_850mv"]
+[ext_resource type="Texture2D" uid="uid://dokemulsil2ul" path="res://Assets/Logo/testlogo.webp" id="2_lit0q"]
 
 [node name="AccountCreation" type="Node"]
 script = ExtResource("1_850mv")
@@ -26,6 +27,11 @@ offset_right = 84.0
 offset_bottom = 77.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="AccountCreation_UI_Control/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_lit0q")
+expand_mode = 5
 
 [node name="AccountCreation_Username_Label" type="Label" parent="AccountCreation_UI_Control/VBoxContainer"]
 layout_mode = 2

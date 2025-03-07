@@ -12,7 +12,8 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# TODO: Add initialization logic here
+	
+	city_owner_output_label.text = Global.current_player.player_name
 	pass
 	
 

@@ -38,8 +38,8 @@ func _on_login_button_pressed() -> void:
 		var account_data = account_file.get_as_text()
 		print("Account Data: " + account_data)
 
-		Global.current_player.player_name = username
-				
+		Global.current_player.player_name = username		
+	
 		get_tree().change_scene_to_file("res://Scenes/city_scene.tscn")
 		
 func _on_create_account_button_pressed() -> void:

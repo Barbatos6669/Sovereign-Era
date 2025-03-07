@@ -7,15 +7,15 @@ var current_city: City = City.new()
 var player_data: Dictionary = {}
 var city_data: Dictionary = {}
 
+# City globals
 
 
-func _ready() -> void:
-	# Runs when this node enters the scene tree
-	# Add any node-specific initialization here, if needed
+
+
+func _ready() -> void:	
 	pass    
 
 func _init():
-	# Initialize the global variables
 	pass
 
 # -------------------
