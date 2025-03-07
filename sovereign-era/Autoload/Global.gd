@@ -4,14 +4,18 @@ extends Node
 var current_player: Player = Player.new()
 var current_city: City = City.new()
 
+var player_data: Dictionary = {}
+var city_data: Dictionary = {}
+
+
+
 func _ready() -> void:
 	# Runs when this node enters the scene tree
 	# Add any node-specific initialization here, if needed
 	pass    
 
 func _init():
-	# Called upon creation (before entering the scene tree)
-	# Put generic initialization logic here if desired
+	# Initialize the global variables
 	pass
 
 # -------------------
@@ -47,6 +51,8 @@ func quit_game() -> void:
 # -------------------
 # Scene Management
 # -------------------
+
+
 
 
 

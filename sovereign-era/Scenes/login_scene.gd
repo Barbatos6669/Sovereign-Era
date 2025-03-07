@@ -6,7 +6,6 @@ extends Node
 @onready var username_line_edit: LineEdit = $Login_UI_Control/VBoxContainer/Login_Username_LineEdit
 @onready var password_line_edit: LineEdit = $Login_UI_Control/VBoxContainer/Login_Password_LineEdit
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -31,8 +30,20 @@ func _on_login_button_pressed() -> void:
 	var account_file = FileAccess.open(filepath, FileAccess.ModeFlags.READ)
 	print("Checking if account exists: " + filepath)
 
-	# TODO: Add logic to check if the account exists and if the password is correct	
+	if account_file == null:
+		print("Account does not exist")
+		return
+	else:
+		print("Account exists")
+		var account_data = account_file.get_as_text()
+		print("Account Data: " + account_data)
 
+		Global.current_player.player_name = username
+				
+		get_tree().change_scene_to_file("res://Scenes/city_scene.tscn")
+		
+		
+		
 func _on_create_account_button_pressed() -> void:
 	print("Create Account Button Pressed")
 
