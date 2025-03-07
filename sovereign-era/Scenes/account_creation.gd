@@ -24,9 +24,19 @@ func _on_account_creation_create_button_pressed() -> void:
 	var username = username_line_edit.text
 	var password = password_line_edit.text
 
-	if username == "" or password == "":
-		print("Username and password cannot be empty")
+	if username.length() < 4:
+		print("Username must be at least 4 characters long.")
 		return
+
+	if password.length() < 6:
+		print("Password must be at least 6 characters long.")
+		return
+
+	# check if the account already exists
+	var account_file_path = "res://Data/Accounts/" + username + ".json"
+	if FileAccess.file_exists(account_file_path):
+		print("Account already exists.")
+		return 
 
 	# create the account
 	var account = {
@@ -36,8 +46,30 @@ func _on_account_creation_create_button_pressed() -> void:
 
 	# save the account
 	var account_file = FileAccess.open("res://Data/Accounts/" + username + ".json", FileAccess.WRITE)
-	account_file.store_string(JSON.stringify(account))
+	account_file.store_string(JSON.stringify(account, "\t"))
 	account_file.close()
+
+	# create the player and city data
+	var player_city_data = {
+		"player": {
+			"username": username,
+			"city": "City"
+		},
+		"city": {
+			"city_name": "City",
+			"city_ID": 0,
+			"city_population": 0,
+			"city_owner": username,
+			"city_location": Vector2(0, 0),
+			"city_data": {},
+			"is_player_capital": true
+		}
+	}
+
+	# save the player and city data
+	var player_city_file = FileAccess.open("res://Data/PlayerCityData/" + username + "_city.json", FileAccess.WRITE)
+	player_city_file.store_string(JSON.stringify(player_city_data, "\t"))
+	player_city_file.close()
 	
 	# load the login scene
 	get_tree().change_scene_to_file("res://Scenes/login_scene.tscn")

@@ -23,7 +23,7 @@ layout_mode = 2
 layout_mode = 2
 text = "City Name:"
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="CityName_Output_Label" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "null"
 
@@ -32,9 +32,9 @@ layout_mode = 2
 
 [node name="population_Label" type="Label" parent="Control/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-text = "Population"
+text = "Population:"
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer2"]
+[node name="Population_Output_Label" type="Label" parent="Control/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 text = "null
 "
@@ -42,11 +42,11 @@ text = "null
 [node name="HBoxContainer3" type="HBoxContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
 
-[node name="population_Label" type="Label" parent="Control/VBoxContainer/HBoxContainer3"]
+[node name="CityOwner_Label" type="Label" parent="Control/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
-text = "Owner"
+text = "Owner:"
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer3"]
+[node name="CityOwner_Output_Label" type="Label" parent="Control/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 text = "null
 "
@@ -58,7 +58,9 @@ layout_mode = 2
 layout_mode = 2
 text = "Location:"
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer4"]
+[node name="Location_Output_Label" type="Label" parent="Control/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 text = "null
 "
+
+[connection signal="renamed" from="Control/VBoxContainer/HBoxContainer4/Location_Output_Label" to="." method="_on_location_output_label_renamed"]
