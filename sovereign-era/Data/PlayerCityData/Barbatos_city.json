@@ -1,0 +1,17 @@
+{
+	"city": {
+		"city_ID": 0,
+		"city_data": {
+
+		},
+		"city_location": "(0.0, 0.0)",
+		"city_name": "City",
+		"city_owner": "Barbatos",
+		"city_population": 0,
+		"is_player_capital": true
+	},
+	"player": {
+		"city": "City",
+		"username": "Barbatos"
+	}
+}

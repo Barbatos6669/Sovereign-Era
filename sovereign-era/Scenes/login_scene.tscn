@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://2mvv0n4kqq03"]
 
-[ext_resource type="Script" path="res://Scenes/login_scene.gd" id="1_d7sjg"]
+[ext_resource type="Script" uid="uid://cqnp2n5gpmfxu" path="res://Scenes/login_scene.gd" id="1_d7sjg"]
 [ext_resource type="Texture2D" uid="uid://dokemulsil2ul" path="res://Assets/Logo/testlogo.webp" id="2_7b371"]
 
 [node name="LoginScene" type="Node"]

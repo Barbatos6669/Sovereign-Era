@@ -1,26 +1,30 @@
 extends Node
 
+## Account Creation Scene Script
+## This script is attached to the AccountCreation node in the account_creation.tscn scene.
+## It is responsible for handling account creation logic.
+
 # Reference to UI elements in the Account Creation scene
-@onready var create_button: Button = $AccountCreation_UI_Control/VBoxContainer/AccountCreation_Create_Button
-@onready var back_button: Button = $AccountCreation_UI_Control/VBoxContainer/AccountCreation_Back_Button
-@onready var username_line_edit: LineEdit = $AccountCreation_UI_Control/VBoxContainer/AccountCreation_Username_LineEdit
-@onready var password_line_edit: LineEdit = $AccountCreation_UI_Control/VBoxContainer/AccountCreation_Password_LineEdit
+@onready var create_button: Button = $AccountCreation_UI_Control/VBoxContainer/AccountCreation_Create_Button ## This is the create account button
+@onready var back_button: Button = $AccountCreation_UI_Control/VBoxContainer/AccountCreation_Back_Button ## This is the back button
+@onready var username_line_edit: LineEdit = $AccountCreation_UI_Control/VBoxContainer/AccountCreation_Username_LineEdit ## This is the username line edit
+@onready var password_line_edit: LineEdit = $AccountCreation_UI_Control/VBoxContainer/AccountCreation_Password_LineEdit ## This is the password line edit
 
 func _ready() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Process logic, if needed, every frame.
 	pass
 
-# Called when the "Create Account" button is pressed
+## Called when the "Create Account" button is pressed
 func _on_account_creation_create_button_pressed() -> void:
 	Global.console_log("Create Account Button Pressed")
 	# TODO: Add validation, account creation, and saving logic here.	
 
 	# validate the username and password
-	var username = username_line_edit.text
-	var password = password_line_edit.text
+	var username: String = username_line_edit.text
+	var password: String = password_line_edit.text
 
 	if username.length() < 4:
 		Global.console_log("Username must be at least 4 characters long.")
@@ -31,24 +35,23 @@ func _on_account_creation_create_button_pressed() -> void:
 		return
 
 	# check if the account already exists
-	var account_file_path = "res://Data/Accounts/" + username + ".json"
+	var account_file_path: String = "res://Data/Accounts/" + username + ".json"
 	if FileAccess.file_exists(account_file_path):
 		Global.console_log("Account already exists.")
 		return 
 
 	# create the account
-	var account = {
+	var account: Dictionary = {
 		"username": username,
-		"password": password
+		"password": password,
 	}
-
 	# save the account
-	var account_file = FileAccess.open("res://Data/Accounts/" + username + ".json", FileAccess.WRITE)
+	var account_file: FileAccess = FileAccess.open(account_file_path, FileAccess.WRITE)
 	account_file.store_string(JSON.stringify(account, "\t"))
 	account_file.close()
 
 	# create the player and city data
-	var player_city_data = {
+	var player_city_data: Dictionary = {
 		"player": {
 			"username": username,
 			"city": "City"
@@ -65,7 +68,7 @@ func _on_account_creation_create_button_pressed() -> void:
 	}
 
 	# save the player and city data
-	var player_city_file = FileAccess.open("res://Data/PlayerCityData/" + username + "_city.json", FileAccess.WRITE)
+	var player_city_file: FileAccess = FileAccess.open("res://Data/PlayerCityData/" + username + "_city.json", FileAccess.WRITE)
 	player_city_file.store_string(JSON.stringify(player_city_data, "\t"))
 	player_city_file.close()	
 
