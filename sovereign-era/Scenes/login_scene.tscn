@@ -35,7 +35,7 @@ expand_mode = 5
 
 [node name="Login_Username_Label" type="Label" parent="Login_UI_Control/VBoxContainer"]
 layout_mode = 2
-text = "Username:          "
+text = "Username:                    "
 
 [node name="Login_Username_LineEdit" type="LineEdit" parent="Login_UI_Control/VBoxContainer"]
 layout_mode = 2

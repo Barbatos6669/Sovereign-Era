@@ -15,35 +15,30 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_login_button_pressed() -> void:	
-	print("Login Button Pressed")
+	Global.console_log("Login Button Pressed")
 
 	# Validate the username and password
 	var username = username_line_edit.text
 	var password = password_line_edit.text
 
 	if username == "" or password == "":
-		print("Username and password cannot be empty")
+		Global.console_log("Username and password cannot be empty")
 		return
 
-	# check if the account exists
-	var filepath = "res://Data/Accounts/" + username + ".json"
-	var account_file = FileAccess.open(filepath, FileAccess.ModeFlags.READ)
-	print("Checking if account exists: " + filepath)
-
-	if account_file == null:
-		print("Account does not exist")
+	# Check if the account exists
+	var account_file_path = "res://Data/Accounts/" + username + ".json"
+	if not FileAccess.file_exists(account_file_path):
+		Global.console_log("Account does not exist")
 		return
-	else:
-		print("Account exists")
-		var account_data = account_file.get_as_text()
-		print("Account Data: " + account_data)
 
-		Global.current_player.player_name = username		
+	# Load the account data
+	var account_file = FileAccess.open(account_file_path, FileAccess.READ)
+	Global.console_log("Account file loaded: " + account_file_path)
+
+	var json_parser = JSON.new() # create an instance of JSON
 	
-		get_tree().change_scene_to_file("res://Scenes/city_scene.tscn")
-		
 func _on_create_account_button_pressed() -> void:
-	print("Create Account Button Pressed")
+	Global.console_log("Create Account Button Pressed")
 
 	# Load the account creation scene
 	var account_creation_scene = preload("res://Scenes/account_creation.tscn")

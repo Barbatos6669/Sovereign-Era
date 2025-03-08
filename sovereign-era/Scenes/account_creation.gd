@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 
 # Called when the "Create Account" button is pressed
 func _on_account_creation_create_button_pressed() -> void:
-	print("Create Account Button Pressed")
+	Global.console_log("Create Account Button Pressed")
 	# TODO: Add validation, account creation, and saving logic here.	
 
 	# validate the username and password
@@ -23,17 +23,17 @@ func _on_account_creation_create_button_pressed() -> void:
 	var password = password_line_edit.text
 
 	if username.length() < 4:
-		print("Username must be at least 4 characters long.")
+		Global.console_log("Username must be at least 4 characters long.")
 		return
 
 	if password.length() < 6:
-		print("Password must be at least 6 characters long.")
+		Global.console_log("Password must be at least 6 characters long.")
 		return
 
 	# check if the account already exists
 	var account_file_path = "res://Data/Accounts/" + username + ".json"
 	if FileAccess.file_exists(account_file_path):
-		print("Account already exists.")
+		Global.console_log("Account already exists.")
 		return 
 
 	# create the account
@@ -69,7 +69,7 @@ func _on_account_creation_create_button_pressed() -> void:
 	player_city_file.store_string(JSON.stringify(player_city_data, "\t"))
 	player_city_file.close()	
 
-	print("Account created successfully.")
+	Global.console_log("Account created successfully.")
 	
 	# load the login scene
 	get_tree().change_scene_to_file("res://Scenes/login_scene.tscn")
@@ -77,7 +77,7 @@ func _on_account_creation_create_button_pressed() -> void:
 	queue_free()
 	
 func _on_account_creation_back_button_pressed() -> void:
-	print("Back Button Pressed")
+	Global.console_log("Back Button Pressed")
 	
 	# load the login scene
 	get_tree().change_scene_to_file("res://Scenes/login_scene.tscn")
