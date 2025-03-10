@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://dix88oh8wa0xl"]
+
+[ext_resource type="Script" uid="uid://dmm102bkul3xv" path="res://UI/top_bar.gd" id="1_owc3q"]
+[ext_resource type="Texture2D" uid="uid://b1ve8who2j6ni" path="res://Assets/Sprites/Bureaucracy_icon.png" id="2_fyl02"]
+[ext_resource type="Texture2D" uid="uid://ccevj5tkhmfgp" path="res://Assets/Sprites/Money_Sign.png" id="2_it0uq"]
+[ext_resource type="Texture2D" uid="uid://c2ylwglbvqpip" path="res://Assets/Sprites/Balance_Bar.png" id="3_5xlss"]
+[ext_resource type="Texture2D" uid="uid://dlt0o3gv40a44" path="res://Assets/Sprites/Authority_Icon.png" id="4_gg6at"]
+[ext_resource type="Texture2D" uid="uid://cdh3yoawum5tj" path="res://Assets/Sprites/Influence_Icon.png" id="5_vsi65"]
+[ext_resource type="Texture2D" uid="uid://ccnoy4rtebak7" path="res://Assets/Sprites/transport_Icon.png" id="6_wocsm"]
+
+[node name="TopBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1015.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_owc3q")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 996.0
+offset_bottom = 64.0
+
+[node name="Bureaucracy_Sign_TextureRect" type="TextureRect" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_fyl02")
+
+[node name="Bureaucracy_VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="BureaucracyQuantity_Label" type="Label" parent="Panel/HBoxContainer/Bureaucracy_VBoxContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="BureaucracyBar_TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Bureaucracy_VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_5xlss")
+
+[node name="Authority_Sign_TextureRect" type="TextureRect" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_gg6at")
+
+[node name="Authority_VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="AuthorityQuantity_Label2" type="Label" parent="Panel/HBoxContainer/Authority_VBoxContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="AuthorityBar_TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Authority_VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_5xlss")
+
+[node name="Influence_Sign_TextureRect3" type="TextureRect" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_vsi65")
+
+[node name="Influence_BoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="InfluenceQuantity_Label2" type="Label" parent="Panel/HBoxContainer/Influence_BoxContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="InfluenceBar_TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Influence_BoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_5xlss")
+
+[node name="Transport_Sign_TextureRect3" type="TextureRect" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_wocsm")
+
+[node name="Transport_VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="TransportQuantity_Label2" type="Label" parent="Panel/HBoxContainer/Transport_VBoxContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="Transport_TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Transport_VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_5xlss")
+
+[node name="Money_Sign_TextureRect" type="TextureRect" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_it0uq")
+
+[node name="Money_VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="Money_Label" type="Label" parent="Panel/HBoxContainer/Money_VBoxContainer"]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="Money_TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Money_VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_5xlss")

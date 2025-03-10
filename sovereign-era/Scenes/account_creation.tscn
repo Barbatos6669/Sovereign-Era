@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cm88fwq5p6ccj"]
 
-[ext_resource type="Script" uid="uid://dbkb3t3l2n4m2" path="res://Scenes/account_creation.gd" id="1_850mv"]
+[ext_resource type="Script" uid="uid://cnign71fm547s" path="res://Scenes/account_creation.gd" id="1_850mv"]
 [ext_resource type="Texture2D" uid="uid://dokemulsil2ul" path="res://Assets/Logo/testlogo.webp" id="2_lit0q"]
 
 [node name="AccountCreation" type="Node"]

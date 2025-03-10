@@ -1,0 +1,29 @@
+{
+	"city": {
+		"Shield": true,
+		"buildings": {
+			"agriculture": {
+				"wheat_farm": 1
+			},
+			"development": {
+				"town_hall": 1
+			},
+			"industry": {
+				"blacksmith": 1
+			},
+			"resourse": {
+				"logging_camp": 1
+			}
+		},
+		"city_name": "New City",
+		"money": 1000,
+		"population": 4,
+		"resources": {
+			"grain": 100
+		}
+	},
+	"credentials": {
+		"password": "test123",
+		"username": "test123"
+	}
+}

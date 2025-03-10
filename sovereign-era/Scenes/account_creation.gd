@@ -42,47 +42,45 @@ func _on_account_creation_create_button_pressed() -> void:
 
 	# create the account
 	var account: Dictionary = {
-		"username": username,
-		"password": password,
-	}
-	# save the account
-	var account_file: FileAccess = FileAccess.open(account_file_path, FileAccess.WRITE)
-	account_file.store_string(JSON.stringify(account, "\t"))
-	account_file.close()
-
-	# create the player and city data
-	var player_city_data: Dictionary = {
-		"player": {
+		"credentials": {
 			"username": username,
-			"city": "City"
+			"password": password
 		},
 		"city": {
-			"city_name": "City",
-			"city_ID": 0,
-			"city_population": 0,
-			"city_owner": username,
-			"city_location": Vector2(0, 0),
-			"city_data": {},
-			"is_player_capital": true
+			"city_name": "New City",
+			"Shield": true,
+			"money": 1000,
+			"population": 4,
+			"resources": {
+				"grain": 100
+			}, 
+			"buildings": {
+				"agriculture": {
+					"wheat_farm": 1
+				},
+				"resourse": {
+					"logging_camp": 1
+				}, 
+				"industry": {
+					"blacksmith": 1
+				}, 
+				"development": {
+					"town_hall": 1
+				}
+			}
 		}
 	}
 
-	# save the player and city data
-	var player_city_file: FileAccess = FileAccess.open("res://Data/PlayerCityData/" + username + "_city.json", FileAccess.WRITE)
-	player_city_file.store_string(JSON.stringify(player_city_data, "\t"))
-	player_city_file.close()	
+	# save the account
+	var account_file: FileAccess = FileAccess.open(account_file_path, FileAccess.WRITE)
+	account_file.store_string(JSON.stringify(account, "\t")) # This will store the account dictionary as a JSON string
+	account_file.close()
 
 	Global.console_log("Account created successfully.")
 	
 	# load the login scene
 	get_tree().change_scene_to_file("res://Scenes/login_scene.tscn")
-	# remove the account creation scene
-	queue_free()
 	
 func _on_account_creation_back_button_pressed() -> void:
 	Global.console_log("Back Button Pressed")
-	
-	# load the login scene
 	get_tree().change_scene_to_file("res://Scenes/login_scene.tscn")
-	# remove the account creation scene
-	queue_free()

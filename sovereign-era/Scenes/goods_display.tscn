@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctdfay6mygna0"]
+
+[ext_resource type="Script" uid="uid://csecc3d6ajnvf" path="res://Scenes/goods_display.gd" id="1_fqy5p"]
+
+[node name="Goods_Display" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fqy5p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Grain_Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Grain:"
+
+[node name="Grain_Display_Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="Wood_Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Wood:"
+
+[node name="Wood_Display_Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
