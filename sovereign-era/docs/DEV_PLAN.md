@@ -5,6 +5,7 @@ Sovereign Era is a strategy game where players build and govern cities, manage r
 
 ## Game Features
 - **Player Management:** Account creation, login, and profile customization.
+    - Created a temp login system for game testing. Will incorporate a better database system later
 - **City Building:** Establish and manage cities with population, production, and resources.
 - **Diplomacy & Trade:** Engage in alliances, trade deals, and conflicts.
 - **Dynamic World:** Explore and interact with a varied game map featuring different terrains.
